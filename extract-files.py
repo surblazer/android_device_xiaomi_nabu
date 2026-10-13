@@ -19,6 +19,8 @@ from extract_utils.main import (
 blob_fixups: blob_fixups_user_type = {
     'vendor/etc/init/init.batterysecret.rc': blob_fixup()
         .regex_replace('.*seclabel u:r:batterysecret:s0\n', ''),
+    'vendor/lib/libaudiocloudctrl.so': blob_fixup()
+        .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so'),
     'vendor/lib/hw/audio.primary.nabu.so': blob_fixup()
         .binary_regex_replace(
             b'/vendor/lib/liba2dpoffload.so',
